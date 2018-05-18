@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>KaizenAnalyzer</title>
+    <script src="js/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- textillate -->
+    <link rel="stylesheet" type="text/css" href="textillate/animate.css">
+    <script src="textillate/jquery.lettering.js"></script>
+    <script src="textillate/jquery.textillate.js"></script>
+    <!-- Chart.js -->
+    <script src="chartjs/Chart.bundle.min.js"></script>
+    <script src="chartjs/Chart.min.js"></script>
+    <script src="chartjs/utils.js"></script>
+</head>
+<body>
+<nav id="MainNavBar" class="navbar navbar-expand-md bg-lightblue navbar-dark" style="z-index: 2">
+    <a id="MainLogoLinkBtn" class="navbar-brand">KaizenAnalyzer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" id="GoToAnalyzeBtn">Анализ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="GoToUtilsBtn">Утилиты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="GoToHelpBtn">Помощь</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="GoToAboutBtn">О нас</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<style type="text/css">
+    pages {
+        position: fixed;
+        padding-top: 20px;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        white-space: nowrap;
+    }
+</style>
+<pages>
+    <div id="MainBlock" class="OneBlock">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <img src="img/KaizenLogo.png" style="background-color: white; border-radius: 10px; padding: 10px;">
+                <h1 id="MainText" class="tlt">Kaizen analyzer</h1>      
+                <p id="MainDescriptionText" class="tlt">Описание работы системы</p>
+                <button id="TryAnalyzeBtn" class="btn btn-primary">Попробовать</button>
+            </div>
+        </div>
+    </div>
+    <div id="AnalyzeTypeBlock" class="OneBlock">
+        <div class="container" style="max-width: 700px">
+            <center>
+                <br>
+                <h3>Выберите метод анализа:</h3>
+                <div id="AnalyzeTypePanel" class="card">
+                    <h5 class="card-header" style="background-color: #b9ffc1;">Методы анализа</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card" style="width: 100%;">
+                                    <img class="card-img-top" src="img/CardImage.png">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Обычный анализ</h5>
+                                        <p class="card-text">Описание описание описание описание описание.</p>
+                                        <a id="GoToUploadBtn" class="btn btn-primary" style="color: white;">Перейти</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="width: 100%;">
+                                    <img class="card-img-top" src="img/CardImage.png">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Обычный анализ</h5>
+                                        <p class="card-text">Описание описание описание описание описание.</p>
+                                        <a href="#" class="btn btn-primary">Перейти</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="width: 100%;">
+                                    <img class="card-img-top" src="img/CardImage.png">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Обычный анализ</h5>
+                                        <p class="card-text">Описание описание описание описание описание.</p>
+                                        <a href="#" class="btn btn-primary">Перейти</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div id="AnalyzeSystemBlock" class="OneBlock">
+        <center>
+            <br><br>
+            <img src="https://png.icons8.com/metro/1600/file.png" class="img-responsive" style="width: 17%;">
+            <h4 style="margin-top: 15px;">Загрузите файл для обработки</h4>
+            <br>
+            <div class="custom-file" style="width: 350px;">
+                <input type="file" class="custom-file-input" id="SourceFileInput" style="cursor: pointer;">
+                <label class="custom-file-label" for="SourceFileInput" style="cursor: pointer;">Выбрать файл...</label>
+            </div>
+            <br><br>
+            <button id="StartAnalyzeSystemBtn" class="btn btn-success" style="width: 350px;">Начать</button>
+        </center>
+    </div>
+    <div id="AnalyzeSystemResultBlock" class="OneBlock">
+        <div class="container-fluid">
+            <br>
+            <center><h3>Результаты:</h3></center>
+            <div id="AnalyzeSystemResult1Panel" class="card">
+                <h5 class="card-header" style="background-color: #b9ffc1;">Результаты #1</h5>
+                <div class="card-body row">
+                    <div class="col-md-12">
+                        <h5 class="card-title">Результаты</h5>
+                        <p class="card-text">
+                            <div>
+                                <canvas id="ChartCanvas" width="1000px" height="350px" style="width: 1000px !important; height: 350px !important;"></canvas>
+                            </div>
+                        </p>
+                        <a href="#" class="btn btn-primary">Начать</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="AnalyzeSystemResult2Panel" class="card">
+                <h5 class="card-header" style="background-color: #b8ceff;">Результаты #2</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Результаты</h5>
+                    <style type="text/css">
+                        .item-header {
+                            margin-top: 10px;
+                        }
+                        .item {
+                            border-bottom: 1px solid lightgray;
+                        }
+                    </style>
+                    <p class="card-text" id="ItemsContainer">
+                        
+                    </p>
+                    <a href="#" class="btn btn-primary">Начать</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div id="UtilsBlock" class="OneBlock"></div>
+    <div id="HelpBlock" class="OneBlock">
+        <center>
+            <br><br><br>
+            <h2>Что у Вас случилось?</h2>
+        </center>
+    </div>
+    <div id="AboutBlock" class="OneBlock">
+        <center>
+            <br><br><br>
+            <h1>Kaizen analyzer</h1>
+            <h3>Most powerful analyzer system</h3>
+            <h5><a href="https://t.me/scaleflake">@scaleflake</a>/<a href="https://t.me/artur0us">@artur0us</a></h5>
+            <h6>/2018/</h6>
+        </center>
+    </div>
+    <!-- Another blocks -->
+    <div id="ProcessingBlock" class="OneBlock">
+        <div class="container">
+            <center>
+                <style type="text/css">
+                    @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+                    body {
+                      background: #f1f1f1;
+                      font-family: 'Roboto', sans-serif;
+                    }
+
+                    .loading-bro {
+                      margin: 50px auto;
+                      width: 150px;
+                    }
+                    .loading-bro > h1 {
+                      text-align: center;
+                      font-size: 2.5em;
+                      margin-bottom: 1em;
+                      font-weight: 300;
+                      color: #8E8E8E;
+                    }
+
+                    #load {
+                      width: 150px;
+                      animation: loading 3s linear infinite;
+                    }
+                    #load #loading-inner {
+                      stroke-dashoffset: 0;
+                      stroke-dasharray: 300;
+                      stroke-width: 10;
+                      stroke-miterlimit: 10;
+                      stroke-linecap: round;
+                      animation: loading-circle 2s linear infinite;
+                      stroke: #51BBA7;
+                      fill: transparent;
+                    }
+
+                    @keyframes loading {
+                      0% {
+                        transform: rotate(0);
+                      }
+                      100% {
+                        transform: rotate(360deg);
+                      }
+                    }
+                    @keyframes loading-circle {
+                      0% {
+                        stroke-dashoffset: 0;
+                      }
+                      100% {
+                        stroke-dashoffset: -600;
+                      }
+                    }
+                </style>
+                <div class="loading-bro">
+                    <h1>Loading</h1>
+                    <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+                        <circle id="loading-inner" cx="75" cy="75" r="60"/>
+                    </svg>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div id="AnalyzeErrorBlock" class="OneBlock">
+        <div class="container">
+            <center>
+                <br><br><br>
+                <h2 style="color: red;">Упс... Кажется, что-то пошло не так...</h2>
+            </center>
+        </div>
+    </div>
+</pages>
+</body>
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/index.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/events.js"></script>
+<script src="js/main.js"></script>
+</html>

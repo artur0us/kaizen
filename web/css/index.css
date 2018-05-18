@@ -1,0 +1,74 @@
+html, body {
+	background-color: #e9ecef !important;
+}
+
+a, a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+/**************************************/
+
+.bg-lightblue {
+	background-color: #2f7dcc;
+}
+
+.navbar-brand {
+	color: white !important;
+}
+
+.nav-link {
+	color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.nav-link:hover {
+	color: #f7dc58 !important;
+}
+
+.card-reader {
+	color: #635e5f;
+}
+
+.card-text {
+	white-space: normal;
+}
+
+/**************************************/
+
+.OneBlock {
+	display: none;
+	margin-top: 50px;
+	width: 100%;
+	background-color: #e9ecef;
+}
+
+/**************************************/
+
+#MainBlock {
+	
+}
+
+/**************************************/
+
+#AnalyzeTypeBlock {
+	
+}
+
+/**************************************/
+
+#AnalyzeSystemBlock {
+
+}
+
+/**************************************/
+
+#AnalyzeSystemResult1Panel {
+}
+
+/**************************************/
