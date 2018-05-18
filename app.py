@@ -17,7 +17,6 @@ from flask import Flask, render_template, Response, request, redirect
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 TEST = True
-
 # Global variables
 serverThread = None
 serverApp = Flask(__name__, static_folder="web", static_url_path="", template_folder="web")
@@ -52,9 +51,9 @@ def allActions(userFile):
         udpipe_model = Model.load(udpipe_filename)
         process_pipeline = Pipeline(udpipe_model, 'tokenize', Pipeline.DEFAULT, Pipeline.DEFAULT, 'conllu')
         nltk.download('stopwords')
-        model = gensim.models.KeyedVectors.load_word2vec_format('news_upos_cbow_300_2_2017.bin.gz', binary=True)
+        model = gensim.models.KeyedVectors.load_word2vec_format('ruwikiruscorpora-superbigrams_skipgram_300_2_2018.vec.gz', binary=False)
         model.init_sims(replace=True)
-        file = open('data_small.csv', "r")
+        file = open('data_full.csv', "r")
         content = file.readlines()
         file.close()
         temp = ""
@@ -68,10 +67,14 @@ def allActions(userFile):
         for item in items:
             if item != unique[-1]:
                 unique.append(item)
+        asd = 0
+        print(len(unique))
         tagged = []
         vectors = []
         pos = True
         for item in unique:
+            asd += 1
+            print(asd)
             clean = ''
             for word in item.split(' '):
                 if word not in stopwords.words('russian'):
